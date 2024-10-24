@@ -6,11 +6,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "posts")
-public class Post implements Likeable {
+@Table(name = "comments")
+public class Comment implements Likeable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -21,23 +26,10 @@ public class Post implements Likeable {
 
     private LocalDateTime createdAt;
 
-    // Add other relevant fields such as likes, comments, etc.
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
-    public String getContent() {
-        return "";
-    }
-
-    // Fields, constructor, etc. from earlier
-
     private int likeCount;
 
-    public Post() {
-        super();
+    public Comment() {
+        this.createdAt = LocalDateTime.now();
         this.likeCount = 0;
     }
 
@@ -60,3 +52,4 @@ public class Post implements Likeable {
 
     // Getters and setters
 }
+
