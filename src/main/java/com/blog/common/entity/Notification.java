@@ -4,7 +4,7 @@ import com.blog.user.entity.User;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
+@Entity
 public abstract class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,7 +5,6 @@ import com.blog.user.entity.User;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "post_notifications")
 public class PostNotification extends Notification {
 
     @ManyToOne
